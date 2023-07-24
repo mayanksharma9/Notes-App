@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:notes/Data/DatabaseHive.dart';
 import 'package:notes/Models/Note.dart';
 
 class NoteData extends ChangeNotifier {
+  final db = HiveDatabase();
   List<Note> allNotes = [
-    Note(id: 0, text: 'First Note'),
-    Note(id: 1, text: 'Second Note'),
-    Note(id: 02, text: 'Third Note'),
+
   ];
+  void initializeNotes() {
+    allNotes = db.loadNotes();
+  }
 
   List<Note> getAllNotes() {
     return allNotes;

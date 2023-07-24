@@ -14,6 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void initstate() {
+    super.initState();
+    Provider.of<NoteData>(context, listen: false).initializeNotes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<NoteData>(
@@ -36,19 +41,26 @@ class _HomePageState extends State<HomePage> {
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     ),
                   ),
+                  value.getAllNotes().length ==0 ? const Padding(
+                    padding: EdgeInsets.only(top : 50.0),
+                    child: Center(child: Text('Nothing here', style: TextStyle(color: Colors.grey),)),
+                  ) :
                   CupertinoListSection.insetGrouped(
                       children: List.generate(
                           value.getAllNotes().length,
                           (index) => CupertinoListTile(
-                                title: Text(value.getAllNotes()[index].text),
-                              )))
+                              title: Text(value.getAllNotes()[index].text),
+                              onTap: () => goToNotePage(
+                                  value.getAllNotes()[index], false),
+                                  trailing: IconButton(icon: Icon(Icons.delete),
+                                  onPressed: () => deleteNote(value.getAllNotes()[index],),)))),
                 ],
               ),
             ));
   }
 
   void creteNewNote() {
-    int id = Provider.of(context, listen: false).getAllNotes().lenth;
+    int id = Provider.of<NoteData>(context, listen: false).getAllNotes().length;
     Note newNote = Note(
       id: id,
       text: '',
@@ -60,7 +72,11 @@ class _HomePageState extends State<HomePage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => EditNotePage(note: note, isNewNote: false),
+          builder: (context) => EditNotePage(note: note, isNewNote: isNewNote),
         ));
+  }
+
+  void deleteNote(Note note) {
+    Provider.of<NoteData>(context, listen: false).deletNote(note);
   }
 }
