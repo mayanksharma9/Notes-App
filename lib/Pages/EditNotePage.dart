@@ -72,7 +72,28 @@ class _EditNotePageState extends State<EditNotePage> {
       body: Column(
         children: [
           QuillToolbar.basic(
-              controller: _controller, showAlignmentButtons: false),
+              controller: _controller, showAlignmentButtons: false,
+              showBackgroundColorButton: false,
+              showCenterAlignment: false,
+              showColorButton: false,
+              showCodeBlock: false,
+              showDirection: false,
+              showFontFamily: false,
+              showDividers: false,
+              showHeaderStyle: false,
+              showIndent: false,
+              showSearchButton: false,
+              showInlineCode: false,
+              showFontSize: false,
+              showClearFormat: false,
+              showBoldButton: false,
+              showListBullets: false,
+              showItalicButton: false,
+              showStrikeThrough: false,
+              showUnderLineButton: false,
+              showListCheck: false,
+              showListNumbers: false,
+              ),
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(25.0),
