@@ -1,10 +1,8 @@
 # notes
+Notes app using Hive database
 
-A new Flutter project.
+![screen-20230726-205255_2_AdobeExpress](https://github.com/mayanksharma9/Notes-App/assets/87018443/64706d26-a865-4856-9c07-5466daa9cc8e)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
